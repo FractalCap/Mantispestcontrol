@@ -315,8 +315,8 @@ header{
 }
 
 .cards-grid {
-    display: grid; 
-    grid-template-columns: repeat(4, 1fr); 
+    display: flex; 
+    flex-wrap: wrap;
     gap: 30px;
     justify-content: center; /* Center grid items */
     max-width: 1200px; /* Constrain width for better centering */
@@ -333,7 +333,9 @@ header{
     display: flex; flex-direction: column;
     border: 1px solid rgba(255,255,255,0.08);
     position: relative;
-    height: 100%;
+    height: auto;
+    flex: 1 1 260px; /* Responsive width */
+    max-width: 320px;
 }
 
 /* Hover Lift & Glow */
