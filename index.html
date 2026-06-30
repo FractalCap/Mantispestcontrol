@@ -11,6 +11,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    @media (min-width: 1024px) {
+      .cards-grid {
+        display: grid !important;
+        grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+        gap: 15px !important;
+        align-items: stretch;
+      }
+      .service-card {
+        margin-bottom: 0 !important;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -86,7 +99,7 @@
             </div>
           </div>
           <div class="card-body">
-            <h3 class="card-title">Mantis Corp</h3>
+            <h3 class="card-title">Control integrado de plagas</h3>
             <p class="card-desc">La solución que su organización necesita en función del plan básico de saneamiento para el control integrado de plagas.</p>
             <a href="#contacto" class="card-btn">COTIZAR <i class="fa-solid fa-chevron-right"></i></a>
           </div>
@@ -100,7 +113,7 @@
             </div>
           </div>
           <div class="card-body">
-            <h3 class="card-title">Mantis Home</h3>
+            <h3 class="card-title">Bienestar y protección para su hogar</h3>
             <p class="card-desc">Nuestro enfoque está en que su hogar sea un espacio de bienestar, controlando la presencia de plagas en su casa.</p>
             <a href="#contacto" class="card-btn">COTIZAR <i class="fa-solid fa-chevron-right"></i></a>
           </div>
@@ -114,7 +127,7 @@
             </div>
           </div>
           <div class="card-body">
-            <h3 class="card-title">Hídrico y saneamiento de tanques</h3>
+            <h3 class="card-title">Gestión integral de sistemas de agua potable</h3>
             <p class="card-desc">Procesos enfocados al monitoreo, medición, mantenimiento, lavado y desinfección de sistemas de agua potable.</p>
             <a href="#contacto" class="card-btn">COTIZAR <i class="fa-solid fa-chevron-right"></i></a>
           </div>
@@ -128,7 +141,7 @@
             </div>
           </div>
           <div class="card-body">
-            <h3 class="card-title">Mantis Security</h3>
+            <h3 class="card-title">Asesoría en seguridad y salud en el trabajo</h3>
             <p class="card-desc">Asesoramos y apoyamos los sistemas de seguridad y salud en el trabajo de su organización.</p>
             <a href="#contacto" class="card-btn">COTIZAR <i class="fa-solid fa-chevron-right"></i></a>
           </div>
@@ -304,10 +317,10 @@
         <div class="footer-col">
           <h4>SERVICIOS</h4>
           <ul class="footer-links">
-            <li><a href="#servicios">Mantis Corp</a></li>
-            <li><a href="#servicios">Mantis Home</a></li>
-            <li><a href="#servicios">Hídrico y saneamiento de tanques</a></li>
-            <li><a href="#servicios">Mantis Security</a></li>
+            <li><a href="#servicios">Control integrado de plagas</a></li>
+            <li><a href="#servicios">Bienestar y protección para su hogar</a></li>
+            <li><a href="#servicios">Gestión integral de sistemas de agua potable</a></li>
+            <li><a href="#servicios">Asesoría en seguridad y salud en el trabajo</a></li>
             <li><a href="#servicios">Limpieza de Shut</a></li>
           </ul>
         </div>
