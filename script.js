@@ -5,48 +5,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   window.scrollTo(0, 0);
 
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   // --- Hamburger Menu Logic ---
   const hamburger = document.getElementById('hamburger');
   const menu = document.getElementById('menu');
 
-  if (hamburger && menu) {
-    hamburger.addEventListener('click', () => {
-      menu.classList.toggle('active');
-      const isActive = menu.classList.contains('active');
-      hamburger.setAttribute('aria-expanded', isActive);
-      document.body.classList.toggle('no-scroll', isActive);
-      
-      // Toggle icon
-      const icon = hamburger.querySelector('i');
-      if (isActive) {
-        icon.classList.remove('fa-bars');
-        icon.classList.add('fa-xmark');
-      } else {
-        icon.classList.remove('fa-xmark');
-        icon.classList.add('fa-bars');
-      }
-    });
-
-    // Close menu when clicking a link
-    menu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        closeMenu();
-      });
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (menu.classList.contains('active') && !menu.contains(e.target) && !hamburger.contains(e.target)) {
-        closeMenu();
-      }
-    });
-
-    function closeMenu() {
-      menu.classList.remove('active');
-      document.body.classList.remove('no-scroll');
+  function closeMenu() {
+    if (!menu) return;
+    menu.classList.remove('active');
+    document.body.classList.remove('no-scroll');
+    if (hamburger) {
       hamburger.setAttribute('aria-expanded', 'false');
-      
-      // Reset icon
       const icon = hamburger.querySelector('i');
       if (icon) {
         icon.classList.remove('fa-xmark');
@@ -55,72 +25,190 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // --- Scroll Spy & Active State Logic ---
-  const sections = document.querySelectorAll('section');
-  const navLinks = document.querySelectorAll('.menu a');
+  if (hamburger && menu) {
+    hamburger.addEventListener('click', () => {
+      menu.classList.toggle('active');
+      const isActive = menu.classList.contains('active');
+      hamburger.setAttribute('aria-expanded', String(isActive));
+      document.body.classList.toggle('no-scroll', isActive);
 
-  // Option 1: Intersection Observer (Modern & Efficient)
-  const observerOptions = {
-    root: null,
-    rootMargin: '-20% 0px -30% 0px', // Activate when section is in the middle-ish
-    threshold: 0.1
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute('id');
-        if (id) {
-            const activeLink = document.querySelector(`.menu a[href="#${id}"]`);
-            if (activeLink) {
-                navLinks.forEach(link => link.classList.remove('active'));
-                activeLink.classList.add('active');
-            }
-        }
+      const icon = hamburger.querySelector('i');
+      if (icon) {
+        icon.classList.toggle('fa-bars', !isActive);
+        icon.classList.toggle('fa-xmark', isActive);
       }
     });
-  }, observerOptions);
 
-  sections.forEach(section => {
-    observer.observe(section);
-  });
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
 
-  // Fallback / Enhancement: Add click listener to set active state immediately
+    document.addEventListener('click', (e) => {
+      if (menu.classList.contains('active') && !menu.contains(e.target) && !hamburger.contains(e.target)) {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+  }
+
+  // --- Sticky header state + scroll progress bar ---
+  const header = document.getElementById('siteHeader');
+  const progress = document.getElementById('scrollProgress');
+  let ticking = false;
+
+  function onScroll() {
+    const y = window.scrollY || window.pageYOffset;
+
+    if (header) header.classList.toggle('scrolled', y > 24);
+
+    if (progress) {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? (y / docHeight) * 100 : 0;
+      progress.style.width = Math.min(100, Math.max(0, pct)) + '%';
+    }
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(onScroll);
+      ticking = true;
+    }
+  }, { passive: true });
+  onScroll();
+
+  // --- Reveal on scroll ---
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  if (revealEls.length) {
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      revealEls.forEach(el => el.classList.add('is-in'));
+    } else {
+      const revealObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-in');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+
+      revealEls.forEach(el => revealObserver.observe(el));
+    }
+  }
+
+  // --- Animated counters ---
+  const counters = document.querySelectorAll('.counter');
+  if (counters.length) {
+    const runCounter = (el) => {
+      const target = parseFloat(el.dataset.target || '0');
+      if (reduceMotion) {
+        el.textContent = String(target);
+        return;
+      }
+      const duration = 1600;
+      const start = performance.now();
+
+      const tick = (now) => {
+        const p = Math.min(1, (now - start) / duration);
+        // easeOutExpo
+        const eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
+        el.textContent = Math.round(target * eased).toLocaleString('es-CO');
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+
+    if (!('IntersectionObserver' in window)) {
+      counters.forEach(runCounter);
+    } else {
+      const counterObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            runCounter(entry.target);
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      counters.forEach(c => counterObserver.observe(c));
+    }
+  }
+
+  // --- Formulario de cotización -> WhatsApp ---
+  const quoteForm = document.getElementById('quoteForm');
+  if (quoteForm) {
+    quoteForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!quoteForm.reportValidity()) return;
+
+      const data = new FormData(quoteForm);
+      const get = (k) => (data.get(k) || '').toString().trim();
+
+      const lines = [
+        'Solicitud de cotización — Mantis Pest Control',
+        '',
+        `Nombre: ${get('nombre')}`,
+        get('empresa') ? `Empresa: ${get('empresa')}` : null,
+        `Teléfono: ${get('telefono')}`,
+        get('email') ? `Correo: ${get('email')}` : null,
+        `Servicio: ${get('servicio')}`,
+        get('ciudad') ? `Ciudad: ${get('ciudad')}` : null,
+        '',
+        `Necesidad: ${get('mensaje')}`
+      ].filter(Boolean);
+
+      const url = 'https://wa.me/573112354546?text=' + encodeURIComponent(lines.join('\n'));
+      window.open(url, '_blank', 'noopener');
+    });
+  }
+
+  // --- Scroll Spy ---
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.menu a');
+
+  if (sections.length && navLinks.length && 'IntersectionObserver' in window) {
+    const spyObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.getAttribute('id');
+        const activeLink = document.querySelector(`.menu a[href="#${id}"]`);
+        if (activeLink) {
+          navLinks.forEach(link => link.classList.remove('active'));
+          activeLink.classList.add('active');
+        }
+      });
+    }, { root: null, rootMargin: '-25% 0px -45% 0px', threshold: 0 });
+
+    sections.forEach(section => spyObserver.observe(section));
+  }
+
   navLinks.forEach(link => {
-    link.addEventListener('click', function() {
-        navLinks.forEach(l => l.classList.remove('active'));
-        this.classList.add('active');
+    link.addEventListener('click', function () {
+      navLinks.forEach(l => l.classList.remove('active'));
+      this.classList.add('active');
     });
   });
 });
 
-// Function to handle "Our Essence" Wizard
+// --- "Nuestra Esencia" wizard ---
 function showStep(stepId) {
-    // 1. Hide all steps content
-    const steps = document.querySelectorAll('.essence-step');
-    steps.forEach(step => {
-        step.style.display = 'none';
-        step.classList.remove('active');
-    });
+  document.querySelectorAll('.essence-step').forEach(step => {
+    step.style.display = 'none';
+    step.classList.remove('active');
+  });
 
-    // 2. Show selected step content
-    const activeStep = document.getElementById('step-' + stepId);
-    if (activeStep) {
-        activeStep.style.display = 'block';
-        // Small timeout to allow display:block to apply before adding active class for animation
-        setTimeout(() => {
-            activeStep.classList.add('active');
-        }, 10);
-    }
+  const activeStep = document.getElementById('step-' + stepId);
+  if (activeStep) {
+    activeStep.style.display = 'block';
+    // Force reflow so the entry animation replays each time
+    void activeStep.offsetWidth;
+    activeStep.classList.add('active');
+  }
 
-    // 3. Update Navigation Tabs
-    const navItems = document.querySelectorAll('.essence-nav-item');
-    navItems.forEach(item => {
-        item.classList.remove('active');
-    });
-    
-    const activeNav = document.getElementById('nav-' + stepId);
-    if (activeNav) {
-        activeNav.classList.add('active');
-    }
+  document.querySelectorAll('.essence-nav-item').forEach(item => item.classList.remove('active'));
+  const activeNav = document.getElementById('nav-' + stepId);
+  if (activeNav) activeNav.classList.add('active');
 }
