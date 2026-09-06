@@ -124,13 +124,6 @@ p{margin:0 0 1rem}
 .topbar .pill i{color:var(--gold);font-size:11px;opacity:.9}
 .topbar .pill:hover{color:#fff}
 .topbar-right{display:flex;align-items:center;gap:20px}
-.topbar-note{
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:var(--font-display);
-  font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--gold);
-}
-.topbar-note i{font-size:11px}
 .social-right{display:flex;gap:6px;align-items:center}
 .social-right a{
   width:27px;height:27px;border-radius:var(--r-xs);
@@ -262,8 +255,6 @@ header.scrolled .brand img.logo-img{max-height:50px}
 }
 .section-header:not(.text-center) .section-lead{margin-inline:0}
 
-/* Banda divisoria entre secciones */
-.rule{height:1px;background:var(--line);border:0;margin:0}
 /* =============================================================
    HERO — composición corporativa
    ============================================================= */
@@ -445,59 +436,6 @@ header.scrolled .brand img.logo-img{max-height:50px}
 .hb-sectors span:hover{background:rgba(255,255,255,.03);color:#fff}
 
 /* =============================================================
-   FRANJA DE CREDENCIALES
-   ============================================================= */
-.credentials-strip{
-  background:var(--ink-900);
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-  padding:clamp(34px,4.5vw,52px) 0;
-}
-.stats-grid{
-  --stats-gap:clamp(20px,3vw,32px);
-  display:grid;grid-template-columns:repeat(4,1fr);gap:var(--stats-gap);
-}
-.stat{position:relative;padding:2px 8px}
-.stat + .stat::before{
-  content:"";position:absolute;top:10%;left:calc(var(--stats-gap) / -2);
-  width:1px;height:80%;background:var(--line);
-}
-.stat-num{
-  font-family:var(--font-display);
-  font-size:clamp(28px,3.4vw,42px);
-  font-weight:800;line-height:1;color:#fff;letter-spacing:-.04em;
-  display:flex;align-items:baseline;gap:1px;
-}
-.stat-num .suffix{color:var(--gold)}
-.stat-label{
-  margin:10px 0 4px;
-  font-family:var(--font-display);
-  font-size:12px;letter-spacing:.11em;text-transform:uppercase;
-  color:#fff;font-weight:700;
-}
-.stat-sub{margin:0;font-size:12.5px;color:var(--muted-2);line-height:1.45}
-
-/* Referencias normativas */
-.compliance-row{
-  margin-top:clamp(30px,4vw,44px);
-  padding-top:26px;border-top:1px solid var(--line);
-  display:flex;align-items:center;gap:clamp(16px,3vw,32px);flex-wrap:wrap;
-}
-.compliance-label{
-  font-family:var(--font-display);
-  font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--muted-2);flex-shrink:0;
-}
-.compliance-items{display:flex;flex-wrap:wrap;gap:10px}
-.compliance-items span{
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:var(--font-mono);
-  font-size:11.5px;color:var(--muted);letter-spacing:.02em;
-  padding:7px 13px;border:1px solid var(--line);border-radius:var(--r-xs);
-}
-.compliance-items i{color:var(--gold);font-size:10px}
-
-/* =============================================================
    SERVICIOS — registro de líneas de servicio
    ============================================================= */
 .services-section{
@@ -518,8 +456,8 @@ header.scrolled .brand img.logo-img{max-height:50px}
 /* Encabezado de columnas: lenguaje de tabla corporativa */
 .services-head{
   display:grid;
-  grid-template-columns:64px minmax(0,1fr) minmax(0,1.06fr) 150px;
-  gap:0 clamp(20px,2.6vw,40px);
+  grid-template-columns:64px minmax(0,1fr) 150px;
+  gap:0 clamp(24px,3vw,48px);
   padding:0 clamp(18px,2.2vw,28px) 12px;
   border-bottom:1px solid var(--line-2);
 }
@@ -540,8 +478,8 @@ header.scrolled .brand img.logo-img{max-height:50px}
   --accent:var(--gold);
   position:relative;
   display:grid;
-  grid-template-columns:64px minmax(0,1fr) minmax(0,1.06fr) 150px;
-  gap:0 clamp(20px,2.6vw,40px);
+  grid-template-columns:64px minmax(0,1fr) 150px;
+  gap:0 clamp(24px,3vw,48px);
   align-items:center;
   padding:clamp(24px,2.8vw,32px) clamp(18px,2.2vw,28px);
   border-top:1px solid var(--line);
@@ -575,10 +513,7 @@ header.scrolled .brand img.logo-img{max-height:50px}
   border:1px solid color-mix(in srgb, var(--accent) 22%, transparent);
   transition:background .35s var(--ease),color .35s var(--ease);
 }
-.service-row:hover .sr-icon{
-  background:var(--accent);
-  color:var(--ink-900);
-}
+.service-row:hover .sr-icon{background:var(--accent);color:var(--ink-900)}
 
 /* --- Columna 2: marca, título, descripción --- */
 .sr-main{min-width:0}
@@ -596,31 +531,15 @@ header.scrolled .brand img.logo-img{max-height:50px}
   color:var(--accent);text-transform:uppercase;
 }
 .sr-title{
-  font-size:clamp(17px,1.9vw,21px);font-weight:800;color:#fff;
+  font-size:clamp(18px,2.1vw,23px);font-weight:800;color:#fff;
   margin:0 0 9px;letter-spacing:-.025em;line-height:1.25;
 }
 .sr-desc{
-  font-size:13.5px;color:var(--muted);margin:0;line-height:1.6;
-  max-width:44ch;
+  font-size:14px;color:var(--muted);margin:0;line-height:1.65;
+  max-width:72ch;
 }
 
-/* --- Columna 3: alcance en dos columnas --- */
-.sr-scope{
-  list-style:none;padding:0;margin:0;
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:9px clamp(14px,1.8vw,24px);
-}
-.sr-scope li{
-  display:flex;align-items:flex-start;gap:9px;
-  font-size:12.5px;color:var(--muted);line-height:1.45;
-}
-.sr-scope li::before{
-  content:"";flex-shrink:0;
-  width:5px;height:5px;margin-top:6px;border-radius:1px;
-  background:var(--accent);opacity:.8;
-}
-
-/* --- Columna 4: acción --- */
+/* --- Columna 3: acción --- */
 .sr-action{display:flex;justify-content:flex-end}
 .sr-btn{
   display:inline-flex;align-items:center;gap:9px;
@@ -634,9 +553,7 @@ header.scrolled .brand img.logo-img{max-height:50px}
 }
 .sr-btn i{font-size:9px;transition:transform .3s var(--ease)}
 .service-row:hover .sr-btn{
-  color:var(--ink-900);
-  background:var(--accent);
-  border-color:var(--accent);
+  color:var(--ink-900);background:var(--accent);border-color:var(--accent);
 }
 .service-row:hover .sr-btn i{transform:translateX(3px)}
 
@@ -647,203 +564,25 @@ header.scrolled .brand img.logo-img{max-height:50px}
 .service-row:nth-child(4){--accent:#C7803F}
 .service-row:nth-child(5){--accent:#8A7FB0}
 
-/* Pie de la lista */
-.services-foot{
-  margin-top:clamp(26px,3vw,38px);
-  display:flex;align-items:center;justify-content:space-between;
-  gap:20px;flex-wrap:wrap;
-}
-.services-foot p{
-  margin:0;font-size:13.5px;color:var(--muted-2);max-width:56ch;line-height:1.6;
-}
-.services-foot p i{color:var(--gold);margin-right:8px}
-
 /* --- Responsive del registro --- */
-@media (max-width:1140px){
+@media (max-width:900px){
   .services-head{display:none}
   .service-row{
     grid-template-columns:56px minmax(0,1fr);
-    gap:0 22px;
+    gap:0 22px;row-gap:20px;
     align-items:start;
-    row-gap:20px;
   }
   .sr-rail{grid-row:1 / span 2}
-  .sr-scope{
-    grid-column:2;
-    padding-top:18px;border-top:1px solid var(--line);
-  }
   .sr-action{grid-column:2;justify-content:flex-start}
 }
 
 @media (max-width:600px){
-  .service-row{
-    grid-template-columns:1fr;
-    padding-inline:16px;
-  }
-  .sr-rail{
-    grid-row:auto;
-    flex-direction:row;align-items:center;gap:14px;
-  }
-  .sr-scope{grid-template-columns:1fr;grid-column:1}
+  .service-row{grid-template-columns:1fr;padding-inline:16px}
+  .sr-rail{grid-row:auto;flex-direction:row;align-items:center;gap:14px}
   .sr-action{grid-column:1}
   .sr-btn{width:100%;justify-content:center}
   .sr-desc{max-width:none}
 }
-
-/* =============================================================
-   SECTORES ATENDIDOS
-   ============================================================= */
-.sectors-section{
-  padding:clamp(60px,7vw,100px) 0;
-  background:var(--ink-850);
-  border-top:1px solid var(--line);
-}
-.sectors-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:1px;background:var(--line);
-  border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;
-}
-.sector{
-  background:var(--ink-850);
-  padding:28px 24px;
-  display:flex;flex-direction:column;gap:14px;
-  transition:background .35s var(--ease);
-}
-.sector:hover{background:var(--ink-700)}
-.sector i{
-  font-size:19px;color:var(--gold);
-  width:42px;height:42px;border-radius:var(--r-sm);
-  display:inline-flex;align-items:center;justify-content:center;
-  background:rgba(227,180,41,.08);
-  border:1px solid rgba(227,180,41,.18);
-  transition:background .35s var(--ease),color .35s var(--ease);
-}
-.sector:hover i{background:var(--gold);color:var(--ink-900)}
-.sector h3{font-size:15px;margin:0 0 4px;color:#fff;font-weight:800}
-.sector p{font-size:13px;color:var(--muted-2);margin:0;line-height:1.55}
-
-/* =============================================================
-   PLAGAS CONTROLADAS
-   ============================================================= */
-.pests-section{
-  padding:clamp(60px,7vw,100px) 0;
-  background:var(--ink-900);
-  border-top:1px solid var(--line);
-}
-.pests-layout{
-  display:grid;grid-template-columns:.85fr 1.15fr;
-  gap:clamp(32px,5vw,64px);align-items:start;
-}
-.pests-layout .section-header{margin-bottom:0}
-.pests-note{
-  margin-top:28px;padding:18px 20px;
-  border:1px solid var(--line);border-left:2px solid var(--gold);
-  border-radius:var(--r-sm);background:rgba(255,255,255,.022);
-}
-.pests-note p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.6}
-.pests-note strong{color:#fff}
-
-.pest-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:1px;background:var(--line);
-  border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;
-}
-.pest{
-  background:var(--ink-900);padding:20px 18px;
-  transition:background .3s var(--ease);
-}
-.pest:hover{background:var(--ink-700)}
-.pest .p-num{
-  font-family:var(--font-mono);
-  font-size:10.5px;color:var(--gold);letter-spacing:.08em;
-  display:block;margin-bottom:9px;
-}
-.pest h4{
-  font-size:14px;margin:0 0 5px;color:#fff;font-weight:800;letter-spacing:-.01em;
-}
-.pest p{font-size:12px;color:var(--muted-2);margin:0;line-height:1.45}
-
-/* =============================================================
-   PROCESO (sección clara)
-   ============================================================= */
-.process-section{
-  background:var(--paper);color:var(--paper-ink);
-  padding:clamp(66px,8vw,110px) 0;
-  position:relative;overflow:hidden;
-}
-.process-section::before{
-  content:"";position:absolute;inset:0;
-  background-image:
-    linear-gradient(to right, rgba(10,31,25,.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(10,31,25,.035) 1px, transparent 1px);
-  background-size:72px 72px;
-  -webkit-mask-image:radial-gradient(100% 68% at 50% 0%, #000, transparent 78%);
-  mask-image:radial-gradient(100% 68% at 50% 0%, #000, transparent 78%);
-  pointer-events:none;
-}
-.process-section .container{position:relative;z-index:1}
-.process-section .subtitle{
-  color:var(--gold-deep);
-  border-color:rgba(168,128,17,.28);
-  background:rgba(168,128,17,.06);
-}
-.process-section .sec-num{background:var(--gold-deep);color:#fff}
-.process-section .title{color:var(--paper-ink)}
-.process-section .section-lead{color:var(--paper-muted)}
-
-.process-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:1px;background:var(--paper-line);
-  border:1px solid var(--paper-line);border-radius:var(--r-md);overflow:hidden;
-}
-.process-step{
-  background:#fff;padding:30px 26px;
-  display:flex;flex-direction:column;
-  transition:background .35s var(--ease);
-}
-.process-step:hover{background:#FBFCFB}
-.ps-top{display:flex;align-items:center;gap:14px;margin-bottom:18px}
-.ps-num{
-  width:38px;height:38px;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;
-  border-radius:var(--r-sm);
-  background:var(--paper-ink);color:var(--gold);
-  font-family:var(--font-mono);font-size:13px;font-weight:700;
-  transition:background .35s var(--ease),color .35s var(--ease);
-}
-.process-step:hover .ps-num{background:var(--gold);color:var(--paper-ink)}
-.ps-top i{font-size:17px;color:var(--paper-line);color:rgba(10,31,25,.22)}
-.process-step h3{font-size:16px;font-weight:800;margin-bottom:8px;color:var(--paper-ink)}
-.process-step p{font-size:13.5px;color:var(--paper-muted);margin:0 0 16px;line-height:1.6;flex-grow:1}
-.ps-deliverable{
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:var(--font-display);
-  font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--gold-deep);
-  padding-top:14px;border-top:1px solid var(--paper-line);
-}
-.ps-deliverable i{font-size:11px}
-
-/* Diferenciadores */
-.why-row{
-  margin-top:clamp(40px,5vw,62px);
-  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
-}
-.why-card{
-  background:#fff;border:1px solid var(--paper-line);
-  border-radius:var(--r-md);padding:24px 22px;
-  display:flex;gap:15px;align-items:flex-start;
-  transition:transform .35s var(--ease-out),border-color .35s var(--ease);
-}
-.why-card:hover{transform:translateY(-4px);border-color:rgba(168,128,17,.35)}
-.why-card i{
-  font-size:15px;color:var(--gold-deep);flex-shrink:0;
-  width:38px;height:38px;border-radius:var(--r-sm);
-  display:inline-flex;align-items:center;justify-content:center;
-  background:rgba(227,180,41,.15);
-}
-.why-card h4{font-size:14.5px;margin:0 0 6px;color:var(--paper-ink);font-weight:800}
-.why-card p{font-size:13px;color:var(--paper-muted);margin:0;line-height:1.55}
 
 /* =============================================================
    NOSOTROS / ESENCIA
@@ -954,25 +693,20 @@ header.scrolled .brand img.logo-img{max-height:50px}
 }
 .value-card:hover .vc-icon{background:var(--gold);color:var(--ink-900)}
 
-/* Bloque de cumplimiento normativo */
-.policy-grid{
+/* Nota de política de calidad */
+.policy-note{
   margin-top:clamp(28px,3.5vw,42px);
   max-width:1060px;margin-inline:auto;
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:1px;background:var(--line);
-  border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;
+  display:flex;align-items:center;gap:16px;
+  padding:20px 26px;
+  border:1px solid var(--line);
+  border-left:2px solid var(--gold);
+  border-radius:var(--r-sm);
+  background:rgba(255,255,255,.022);
 }
-.policy-item{background:var(--ink-850);padding:24px 22px}
-.policy-item .pi-head{
-  display:flex;align-items:center;gap:10px;margin-bottom:10px;
-}
-.policy-item i{color:var(--gold);font-size:14px}
-.policy-item h4{
-  font-family:var(--font-display);
-  font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
-  color:#fff;margin:0;
-}
-.policy-item p{font-size:13px;color:var(--muted);margin:0;line-height:1.6}
+.policy-note i{color:var(--gold);font-size:16px;flex-shrink:0}
+.policy-note p{margin:0;font-size:14px;color:var(--muted)}
+.policy-note strong{color:#fff;font-weight:700}
 
 /* =============================================================
    CONTACTO
@@ -989,10 +723,6 @@ header.scrolled .brand img.logo-img{max-height:50px}
 }
 
 /* Columna de datos */
-.contact-info h3{
-  font-size:clamp(21px,2.6vw,28px);color:#fff;margin-bottom:12px;letter-spacing:-.03em;
-}
-.contact-info > p{color:var(--muted);font-size:15px;margin-bottom:28px;line-height:1.7}
 .contact-list{list-style:none;padding:0;margin:0 0 28px}
 .contact-list li{
   display:flex;gap:14px;align-items:flex-start;
@@ -1136,7 +866,6 @@ footer{
   font-size:9.5px;letter-spacing:.28em;color:var(--gold);
   text-transform:uppercase;font-weight:700;display:block;margin-top:6px;
 }
-.footer-tagline{font-size:13.5px;color:var(--muted-2);max-width:320px;margin:16px 0 22px;line-height:1.65}
 .footer-contact{list-style:none;padding:0;margin:0}
 .footer-contact li{display:flex;gap:12px;margin-bottom:12px;font-size:13.5px;color:var(--muted);align-items:flex-start}
 .footer-contact li i{color:var(--gold);font-size:12px;min-width:15px;margin-top:5px}
@@ -1156,8 +885,6 @@ footer{
   gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted-2);
 }
 .footer-bottom p{margin:0}
-.footer-legal{display:flex;gap:20px;flex-wrap:wrap}
-.footer-legal a:hover{color:var(--gold)}
 
 /* WhatsApp flotante */
 .float-wa{
@@ -1171,7 +898,6 @@ footer{
   transition:transform .32s var(--ease-out);
 }
 .float-wa:hover{transform:translateY(-4px) scale(1.04)}
-
 
 /* =============================================================
    RESPONSIVE — escalera de breakpoints
@@ -1188,19 +914,47 @@ footer{
 @media (max-width:1080px){
   .menu a{padding:8px 10px;font-size:11.5px;letter-spacing:.06em}
   .cta-header{padding:11px 15px;font-size:10.5px}
-  .sectors-grid{grid-template-columns:repeat(2,1fr)}
-  .process-grid{grid-template-columns:repeat(2,1fr)}
-  .pests-layout{grid-template-columns:1fr;gap:34px}
   .contact-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1.4fr 1fr}
-  .policy-grid{grid-template-columns:1fr}
   .hb-sectors span{font-size:11px;padding:17px 8px}
   .hb-caption{padding-right:18px;letter-spacing:.14em}
 }
 
-/* ---------- ≤1024px: menú hamburguesa ----------
-   Con 7 entradas el menú horizontal ya no cabe junto al logo y al CTA. */
-@media (max-width:1024px){
+/* ---------- ≤960px: hero a una columna ---------- */
+@media (max-width:960px){
+  .hero-grid{grid-template-columns:1fr;text-align:center}
+  .hero-text{padding-bottom:0}
+  .hero-eyebrow,.hero-buttons{justify-content:center}
+  .hero-desc{margin-inline:auto}
+  .hero-image{margin-top:24px;flex-direction:column;align-items:center;gap:20px}
+  .hero-image img{max-height:min(58vh,440px);max-width:100%}
+
+  /* El panel lateral pierde sentido sin dos columnas */
+  .hero-bg .panel{display:none}
+  .hero-bg .cols{
+    background-image:repeating-linear-gradient(to right,rgba(255,255,255,.04) 0 1px,transparent 1px calc(100% / 3));
+  }
+  .hero-badge{position:static;align-self:center}
+
+  /* La barra de sectores pasa a rejilla */
+  .hero-bar .container{flex-direction:column;padding-inline:var(--gutter)}
+  .hb-caption{padding:16px 0 0;justify-content:center;width:100%}
+  .hb-sectors{
+    width:100%;display:grid;grid-template-columns:repeat(5,1fr);
+    gap:1px;background:var(--line);
+    border:1px solid var(--line);border-radius:var(--r-sm);
+    margin:14px 0 18px;overflow:hidden;
+  }
+  .hb-sectors span{border-left:0;background:rgba(3,10,8,.6);padding:14px 8px}
+
+  .topbar .container{flex-direction:column;gap:10px}
+  .contact-left{justify-content:center;gap:16px}
+  .topbar-right{gap:16px}
+}
+
+/* ---------- ≤900px: menú hamburguesa ----------
+   Punto en el que las 4 entradas ya no caben junto al logo y al CTA. */
+@media (max-width:900px){
   .nav{height:74px;gap:16px}
   header.scrolled .nav{height:66px}
   .brand img.logo-img{max-height:54px}
@@ -1253,46 +1007,8 @@ footer{
   html{scroll-padding-top:86px}
 }
 
-/* ---------- ≤960px: hero a una columna ---------- */
-@media (max-width:960px){
-  .hero-grid{grid-template-columns:1fr;text-align:center}
-  .hero-text{padding-bottom:0}
-  .hero-eyebrow,.hero-buttons{justify-content:center}
-  .hero-desc{margin-inline:auto}
-  .hero-image{margin-top:24px;flex-direction:column;align-items:center;gap:20px}
-  .hero-image img{max-height:min(58vh,440px);max-width:100%}
-
-  /* El panel lateral pierde sentido sin dos columnas */
-  .hero-bg .panel{display:none}
-  .hero-bg .cols{
-    background-image:repeating-linear-gradient(to right,rgba(255,255,255,.04) 0 1px,transparent 1px calc(100% / 3));
-  }
-  .hero-badge{position:static;align-self:center}
-
-  /* La barra de sectores pasa a rejilla */
-  .hero-bar .container{flex-direction:column;padding-inline:var(--gutter)}
-  .hb-caption{padding:16px 0 0;justify-content:center;width:100%}
-  .hb-sectors{
-    width:100%;display:grid;grid-template-columns:repeat(3,1fr);
-    gap:1px;background:var(--line);
-    border:1px solid var(--line);border-radius:var(--r-sm);
-    margin:14px 0 18px;overflow:hidden;
-  }
-  .hb-sectors span{border-left:0;background:rgba(3,10,8,.6);padding:14px 8px}
-
-  .stats-grid{grid-template-columns:repeat(2,1fr);gap:28px}
-  .stat + .stat::before{display:none}
-  .why-row{grid-template-columns:1fr}
-  .compliance-row{flex-direction:column;align-items:flex-start;gap:16px}
-
-  .topbar .container{flex-direction:column;gap:10px}
-  .contact-left{justify-content:center;gap:16px}
-  .topbar-right{gap:16px}
-}
-
 /* ---------- ≤768px: tablet vertical y móvil ---------- */
 @media (max-width:768px){
-  .pest-grid{grid-template-columns:repeat(2,1fr)}
   .values-grid-pro{grid-template-columns:repeat(2,1fr)}
 
   /* Formulario: 16px evita el zoom automático de Safari iOS al enfocar */
@@ -1303,10 +1019,6 @@ footer{
   .qf-foot .btn{width:100%}
   .qf-note{max-width:none;text-align:center}
 
-  .services-foot{flex-direction:column;align-items:stretch;text-align:center}
-  .services-foot p{max-width:none}
-  .services-foot .btn{width:100%}
-
   .cta-banner{flex-direction:column;text-align:center;align-items:stretch}
   .cta-content p{margin-inline:auto}
   .cta-action .btn{width:100%}
@@ -1316,7 +1028,6 @@ footer{
   .social-inline{justify-content:center}
 
   .footer-grid{grid-template-columns:1fr;gap:34px}
-  .footer-tagline{max-width:none}
   .footer-bottom{flex-direction:column;text-align:center}
   /* Espacio para que el botón flotante no tape el pie */
   footer{padding-bottom:96px}
@@ -1324,9 +1035,6 @@ footer{
 
 /* ---------- ≤600px: una sola columna en todo ---------- */
 @media (max-width:600px){
-  .sectors-grid{grid-template-columns:1fr}
-  .process-grid{grid-template-columns:1fr}
-  .pest-grid{grid-template-columns:1fr}
   .values-grid-pro{grid-template-columns:1fr}
 
   .essence-nav-item{padding:14px 6px;font-size:10px;letter-spacing:.08em}
@@ -1336,32 +1044,16 @@ footer{
   .hero-buttons{flex-direction:column;width:100%}
   .hero-buttons .btn{width:100%}
   .hb-sectors{grid-template-columns:repeat(2,1fr)}
+  .hb-sectors span:last-child{grid-column:1 / -1}
   .hero-badge{width:100%;justify-content:center}
 
-  .stats-grid{grid-template-columns:1fr;gap:0}
-  .stat{
-    padding:18px 0;border-bottom:1px solid var(--line);
-    display:grid;grid-template-columns:auto 1fr;
-    align-items:baseline;gap:0 16px;
-  }
-  .stat:last-child{border-bottom:0}
-  .stat-num{grid-row:1 / span 2}
-  .stat-label{margin:0}
-  .stat-sub{grid-column:2}
-
-  .compliance-items{width:100%;flex-direction:column;gap:8px}
-  .compliance-items span{width:100%}
-
   .social-right{display:none}
-  .topbar-note{display:none}
 }
 
 /* ---------- ≤480px: teléfonos ---------- */
 @media (max-width:480px){
   .topbar{font-size:11.5px}
   .contact-left{flex-direction:column;gap:7px}
-  /* El horario ya aparece en Contacto y en el pie: fuera del topbar */
-  .contact-left .pill:nth-child(3){display:none}
 
   .section-header{margin-bottom:36px}
   .hero{padding-top:40px}
@@ -1369,9 +1061,6 @@ footer{
 
   .essence-body{padding:30px 18px}
   .essence-nav-item{padding:13px 4px;font-size:9.5px;letter-spacing:.06em}
-
-  .policy-item,.sector,.process-step,.why-card{padding:22px 18px}
-  .why-card{flex-direction:column;gap:12px}
 
   .quote-form{padding:22px 18px}
   .cta-banner{padding:30px 22px}

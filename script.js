@@ -99,44 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // --- Animated counters ---
-  const counters = document.querySelectorAll('.counter');
-  if (counters.length) {
-    const runCounter = (el) => {
-      const target = parseFloat(el.dataset.target || '0');
-      if (reduceMotion) {
-        el.textContent = String(target);
-        return;
-      }
-      const duration = 1600;
-      const start = performance.now();
-
-      const tick = (now) => {
-        const p = Math.min(1, (now - start) / duration);
-        // easeOutExpo
-        const eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
-        el.textContent = Math.round(target * eased).toLocaleString('es-CO');
-        if (p < 1) requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
-    };
-
-    if (!('IntersectionObserver' in window)) {
-      counters.forEach(runCounter);
-    } else {
-      const counterObserver = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            runCounter(entry.target);
-            obs.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.5 });
-
-      counters.forEach(c => counterObserver.observe(c));
-    }
-  }
-
   // --- Formulario de cotización -> WhatsApp ---
   const quoteForm = document.getElementById('quoteForm');
   if (quoteForm) {
@@ -151,11 +113,9 @@ document.addEventListener('DOMContentLoaded', () => {
         'Solicitud de cotización — Mantis Pest Control',
         '',
         `Nombre: ${get('nombre')}`,
-        get('empresa') ? `Empresa: ${get('empresa')}` : null,
         `Teléfono: ${get('telefono')}`,
         get('email') ? `Correo: ${get('email')}` : null,
-        `Servicio: ${get('servicio')}`,
-        get('ciudad') ? `Ciudad: ${get('ciudad')}` : null,
+        `Línea de interés: ${get('servicio')}`,
         '',
         `Necesidad: ${get('mensaje')}`
       ].filter(Boolean);
